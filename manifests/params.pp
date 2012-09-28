@@ -19,6 +19,6 @@ class hubot::params {
       'hubot-xmpp'
     ]
   } else {
-    fail("${::lsbdistcodename} is not supported :(")
+    fail("${::operatingsystem}/${::lsbdistcodename} is not supported :(")
   }
 }
