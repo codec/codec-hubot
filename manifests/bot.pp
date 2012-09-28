@@ -4,7 +4,10 @@ define hubot::bot (
   $username,
   $password,
   $adapter='xmpp',
-  $script_source='puppet://hubot/scripts/',
+  $script_source=[
+    "puppet:///modules/hubot/scripts/${name}",
+    'puppet:///modules/hubot/scripts/'
+  ],
   $options=false
 ) {
   $dir_ensure = $ensure ? {
