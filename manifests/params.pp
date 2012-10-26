@@ -1,5 +1,5 @@
 class hubot::params {
-  if $::lsbdistcodename == 'Precise' {
+  if $::osfamily == 'Debian' {
     $basedir = '/srv/hubot'
 
     $build_packages = [
@@ -19,6 +19,6 @@ class hubot::params {
       'hubot-xmpp'
     ]
   } else {
-    fail("${::operatingsystem}/${::lsbdistcodename} is not supported :(")
+    fail("${::osfamily}/${::operatingsystem}/${::lsbdistcodename} is not supported :(")
   }
 }
