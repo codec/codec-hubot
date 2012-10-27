@@ -25,6 +25,13 @@ define hubot::bot (
     creates => "${hubot::params::basedir}/${name}/bin/hubot"
   }
 
+  exec { "build-hubot-deps::${name}":
+    command => "sudo node-gyp rebuild",
+    cwd => "${hubot::params::basedir}/${name}/node_modules/hubot-xmpp/node_modules/node-xmpp/node_modules/node-expat",
+    creates => "${hubot::params::basedir}/${name}/node_modules/hubot-xmpp/node_modules/node-xmpp/node_modules/node-expat/build",
+    require => Nodejs::Npm["${hubot::params::basedir}/${name}:hubot-${adapter}"]
+  }
+
   exec { "bootstrap-hubot::${name}":
     cwd         => "${hubot::params::basedir}/${name}",
     command     => "/usr/bin/npm install",

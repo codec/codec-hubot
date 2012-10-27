@@ -16,7 +16,9 @@ class hubot::params {
 
     $packages = [
       'hubot',
-      'hubot-xmpp'
+      'hubot-xmpp',
+      'node-gyp',
+      'node-expat'
     ]
   } else {
     fail("${::osfamily}/${::operatingsystem}/${::lsbdistcodename} is not supported :(")
