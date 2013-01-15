@@ -2,6 +2,8 @@ export HUBOT_<%= adapter.upcase -%>_USERNAME=<%= username %>
 export HUBOT_<%= adapter.upcase -%>_PASSWORD=<%= password %>
 export HUBOT_<%= adapter.upcase -%>_ROOMS=<%= rooms.join(',') %>
 
-<% options.sort.each do |k,v| -%>
-export HUBOT_<%= k.upcase -%>="<%= v %>"
+<% if options %>
+    <% options.sort.each do |k,v| -%>
+    export HUBOT_<%= k.upcase -%>="<%= v %>"
+    <%- end %>
 <%- end %>
