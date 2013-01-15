@@ -8,7 +8,8 @@ define hubot::bot (
     "puppet:///modules/hubot/scripts/${name}",
     'puppet:///modules/hubot/scripts/'
   ],
-  $options=false
+  $options=false,
+  $script_path = "${hubot::params::basedir}/${name}/scripts"
 ) {
   $dir_ensure = $ensure ? {
     'present' => 'directory',
@@ -21,7 +22,7 @@ define hubot::bot (
   }
 
   exec { "create-hubot::${name}":
-    command => "/usr/local/bin/hubot -c ${hubot::params::basedir}/${name}",
+    command => "/usr/bin/hubot -c ${hubot::params::basedir}/${name}",
     creates => "${hubot::params::basedir}/${name}/bin/hubot"
   }
 
